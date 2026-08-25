@@ -1,0 +1,17 @@
+{
+  "name": "lab3",
+  "version": "1.0.0",
+  "description": "HTTP-hyper text transfer protocol\r html-Hyper Text markup language\r css-Cascad Style Sheet\r npm-node package manager",
+  "main": "app.js",
+  "scripts": {
+    "start": "node prg1.js",
+    "dev":"nodemon prg3.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
