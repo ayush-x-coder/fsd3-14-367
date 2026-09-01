@@ -1,130 +1,40 @@
-import http from 'http'
-import { createReadStream } from 'fs'
-import { readFile } from 'fs/promises'
+import http from 'http';
+import { createReadStream } from 'fs';
 
-const server = http.createServer(async (req, res) => {
+const server = http.createServer((req, res) => {
 
-    if (req.url === '/stream') {
+    if (req.url === '/') {
 
-        const stream = createReadStream('big.txt', {
+        const stream = createReadStream('./pages/airtag.html', {
             encoding: 'utf-8'
-        })
+        });
 
-        stream.on('error', (err) => {
-            console.error(err)
-            res.statusCode = 500
-            res.end('Error reading file')
-        })
+        res.writeHead(200, {
+            'Content-Type': 'text/html'
+        });
 
-        stream.pipe(res)
-
+        stream.pipe(res);
+        return;
     }
-
-    else if (req.url === '/normal') {
-
-        try {
-            const text = await readFile('big.txt', 'utf-8')
-
-            res.statusCode = 200
-            res.setHeader('Content-Type', 'text/plain')
-            res.end(text)
-
-        } catch (error) {
-            console.error(error)
-            res.statusCode = 500
-            res.end('Error reading file')
-        }
-
-    }
-
-    else if (req.url === '/') {
-
-        res.statusCode = 200
-        res.setHeader('Content-Type', 'text/html')
-
-        const data = createReadStream('product.html')
-
-        data.on('error', (err) => {
-            console.error(err)
-            res.statusCode = 500
-            res.end('Error loading home page')
-        })
-
-        data.pipe(res)
-
-    }
-
-    else if (req.url === '/product') {
-
-        res.statusCode = 200
-        res.setHeader('Content-Type', 'text/html')
-
-        const data = createReadStream('product.html')
-
-        data.on('error', (err) => {
-            console.error(err)
-            res.statusCode = 500
-            res.end('Error loading product page')
-        })
-
-        data.pipe(res)
-
-    }
-
-    else if (req.url === '/about') {
-
-        res.statusCode = 200
-        res.setHeader('Content-Type', 'text/html')
-
-        const data = createReadStream('product.html')
-
-        data.on('error', (err) => {
-            console.error(err)
-            res.statusCode = 500
-            res.end('Error loading about page')
-        })
-
-        data.pipe(res)
-
-    }
-
-    else if (req.url === '/contact') {
-
-        res.statusCode = 200
-        res.setHeader('Content-Type', 'text/html')
-
-        const data = createReadStream('product.html')
-
-        data.on('error', (err) => {
-            console.error(err)
-            res.statusCode = 500
-            res.end('Error loading contact page')
-        })
-
-        data.pipe(res)
-
-    }
-
-    else {
-
-        res.statusCode = 404
-        res.setHeader('Content-Type', 'text/html')
-
-        res.end(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>404</title>
-            </head>
-            <body>
-                <h1>404 - Page Not Found</h1>
-            </body>
-            </html>
-        `)
-    }
-
-})
-
+else if(req.url==='/mobile'){
+    res.writeHead(200,{"content-type":"text/json"});
+    const stream = createReadStream('./data/products.json', {
+       encoding: 'utf-8'
+    });    
+    stream.pipe(res);
+    return;
+}
+else if(req.url==='/manual'){
+    res.writeHead(200,{"content-type":"text/plain"});
+    const stream = createReadStream('./data/chatgpt.txt', {
+       encoding: 'utf-8'
+    });  
+    stream.pipe(res);  
+}
+else{
+    res.statusCode=404;
+    res.removeHeader("Not found");}
+});
 server.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000')
+    console.log("prg9 is running at 3000....");
 });
