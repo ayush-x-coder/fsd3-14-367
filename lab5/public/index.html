@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORLD FOOTBALL — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1B33;
+    --navy-deep:#071223;
+    --blue:#12335F;
+    --gold:#C9A227;
+    --gold-bright:#E6C34A;
+    --white:#FFFFFF;
+    --off-white:#F3F4F1;
+    --grey:#8B93A1;
+    --line:rgba(255,255,255,0.12);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{}
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Archivo', -apple-system, sans-serif;
+    background:var(--off-white);
+    color:var(--navy-deep);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Archivo Black', 'Archivo', sans-serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; cursor:pointer;}
+
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    background:var(--navy-deep);
+    color:var(--grey);
+    font-size:12.5px;
+  }
+  .topbar .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    height:36px;
+  }
+  .topbar-links{display:flex; gap:22px;}
+  .topbar-links a{color:var(--grey); transition:color .15s;}
+  .topbar-links a:hover{color:var(--gold-bright);}
+  .topbar-lang{display:flex; gap:14px; color:var(--grey);}
+  .topbar-lang span{cursor:pointer;}
+  .topbar-lang span.active{color:var(--white); font-weight:600;}
+
+  /* ===== Nav ===== */
+  nav{
+    background:var(--navy);
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:50;
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:50%;
+    background:conic-gradient(from 210deg, var(--gold) 0deg, var(--gold-bright) 120deg, var(--gold) 240deg, var(--gold-bright) 360deg);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 0 2px var(--navy-deep), 0 0 0 3px var(--gold);
+  }
+  .brand-mark::after{
+    content:"";
+    width:16px; height:16px;
+    background:var(--navy-deep);
+    clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  .brand-text{color:var(--white); font-family:'Archivo Black'; font-size:16px; letter-spacing:.01em;}
+  .brand-text small{display:block; font-family:'Archivo'; font-weight:500; font-size:10.5px; color:var(--gold-bright); letter-spacing:.14em; margin-top:2px;}
+
+  .primary-nav{display:flex; gap:34px;}
+  .primary-nav a{
+    color:var(--off-white); font-size:14.5px; font-weight:600;
+    padding:8px 0; position:relative;
+  }
+  .primary-nav a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--gold-bright); transition:width .2s;
+  }
+  .primary-nav a:hover::after{width:100%;}
+
+  .nav-actions{display:flex; align-items:center; gap:18px;}
+  .search-btn{
+    width:36px; height:36px; border-radius:50%; border:1px solid var(--line);
+    background:transparent; color:var(--off-white); display:flex; align-items:center; justify-content:center;
+  }
+  .cta-btn{
+    background:var(--gold); color:var(--navy-deep); font-weight:700; font-size:13.5px;
+    padding:10px 20px; border-radius:2px; border:none; letter-spacing:.02em;
+  }
+  .cta-btn:hover{background:var(--gold-bright);}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse 900px 500px at 78% 20%, rgba(201,162,39,0.18), transparent 60%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 55%, var(--blue) 100%);
+    color:var(--white);
+    overflow:hidden;
+    padding:64px 0 0;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 120px);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px;
+    align-items:center; position:relative; z-index:2;
+    padding-bottom:56px;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--gold-bright); font-size:13px; font-weight:700; letter-spacing:.06em;
+    margin-bottom:18px;
+  }
+  .hero-eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--gold-bright); animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;}}
+  @media (prefers-reduced-motion: reduce){.hero-eyebrow .dot{animation:none;}}
+
+  .hero h1{
+    font-size:clamp(40px, 5.6vw, 74px);
+    max-width:11ch;
+  }
+  .hero p.sub{
+    margin-top:22px; font-size:17px; color:#C7CEDC; max-width:46ch;
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:32px;}
+  .btn-primary{
+    background:var(--gold); color:var(--navy-deep); font-weight:700; font-size:14.5px;
+    padding:14px 26px; border-radius:2px;
+  }
+  .btn-primary:hover{background:var(--gold-bright);}
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,0.3); color:var(--white); font-weight:600; font-size:14.5px;
+    padding:14px 26px; border-radius:2px;
+  }
+  .btn-ghost:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
+
+  /* Countdown card */
+  .match-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    backdrop-filter:blur(6px);
+    border-radius:6px;
+    padding:26px 26px 22px;
+  }
+  .match-card .tag{
+    font-size:11.5px; font-weight:700; letter-spacing:.1em; color:var(--gold-bright);
+    text-transform:uppercase;
+  }
+  .match-teams{
+    display:flex; align-items:center; justify-content:space-between;
+    margin:22px 0 18px;
+  }
+  .team{text-align:center; width:38%;}
+  .team-crest{
+    width:56px; height:56px; margin:0 auto 10px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Archivo Black'; font-size:18px; color:var(--navy-deep);
+  }
+  .crest-a{background:linear-gradient(135deg, var(--gold-bright), var(--gold));}
+  .crest-b{background:linear-gradient(135deg, #E9EDF3, #B9C2D0);}
+  .team-name{font-size:13.5px; font-weight:600; color:var(--off-white);}
+  .vs{font-family:'Archivo Black'; color:var(--grey); font-size:15px;}
+
+  .countdown{display:flex; gap:10px; justify-content:center; margin-top:6px;}
+  .countdown div{
+    background:rgba(255,255,255,0.08); border-radius:4px; padding:10px 12px; min-width:56px; text-align:center;
+  }
+  .countdown .n{font-family:'Archivo Black'; font-size:20px; color:var(--white); display:block;}
+  .countdown .l{font-size:10px; color:var(--grey); letter-spacing:.08em; text-transform:uppercase;}
+
+  .hero-stats{
+    display:flex; gap:0; border-top:1px solid var(--line);
+    position:relative; z-index:2;
+  }
+  .hero-stats .wrap{display:flex;}
+  .stat{
+    flex:1; padding:22px 32px; border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .n{font-family:'Archivo Black'; font-size:26px; color:var(--gold-bright);}
+  .stat .l{font-size:12.5px; color:var(--grey); margin-top:4px;}
+
+  /* ===== Section heading ===== */
+  .section{padding:64px 0;}
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between; margin-bottom:32px;
+    border-bottom:2px solid var(--navy-deep); padding-bottom:14px;
+  }
+  .section-head h2{font-size:28px; color:var(--navy-deep);}
+  .section-head .see-all{font-size:13.5px; font-weight:700; color:var(--blue);}
+  .section-head .see-all:hover{color:var(--gold);}
+
+  /* ===== News grid ===== */
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-template-rows:repeat(2, 240px);
+    gap:20px;
+  }
+  .story{
+    position:relative; border-radius:4px; overflow:hidden; color:var(--white);
+    background:var(--navy);
+    display:flex; align-items:flex-end;
+  }
+  .story::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(7,18,35,0.92) 10%, rgba(7,18,35,0.15) 65%);
+  }
+  .story .art{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(201,162,39,0.35), transparent 55%),
+      linear-gradient(135deg, var(--blue), var(--navy-deep));
+  }
+  .story-body{position:relative; z-index:2; padding:22px;}
+  .story .cat{font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--gold-bright); text-transform:uppercase;}
+  .story h3{font-size:19px; margin-top:8px; max-width:26ch;}
+  .story .meta{font-size:12px; color:#A9B2C3; margin-top:10px;}
+
+  .story.lead{grid-column:1 / span 3; grid-row:1 / span 2;}
+  .story.lead h3{font-size:28px; max-width:18ch;}
+  .story.med{grid-column:4 / span 3; grid-row:1;}
+  .story.small{grid-column:span 3; grid-row:2;}
+  .story.small:nth-of-type(3){grid-column:4 / span 3;}
+
+  /* ===== Rankings ticker ===== */
+  .rankings{
+    background:var(--navy-deep); color:var(--white); padding:48px 0;
+  }
+  .rankings .section-head{border-bottom:2px solid rgba(255,255,255,0.15); color:var(--white);}
+  .rankings .section-head h2{color:var(--white);}
+  .rankings .section-head .see-all{color:var(--gold-bright);}
+
+  .rank-table{width:100%; border-collapse:collapse;}
+  .rank-table th{
+    text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--grey); font-weight:600; padding:10px 14px; border-bottom:1px solid var(--line);
+  }
+  .rank-table td{padding:14px; border-bottom:1px solid var(--line); font-size:14.5px;}
+  .rank-table tr:last-child td{border-bottom:none;}
+  .rank-table .pos{font-family:'Archivo Black'; color:var(--gold-bright); width:40px;}
+  .rank-table .team-cell{display:flex; align-items:center; gap:12px; font-weight:600;}
+  .mini-crest{width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--gold-bright),var(--gold));}
+  .rank-table .pts{font-family:'Archivo Black'; text-align:right; color:var(--white);}
+  .rank-table .move{font-size:12px; font-weight:700;}
+  .move.up{color:#5FD68B;}
+  .move.down{color:#E4667A;}
+  .move.same{color:var(--grey);}
+
+  /* ===== Competitions strip ===== */
+  .comps{padding:56px 0; background:var(--off-white);}
+  .comp-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
+  .comp-card{
+    border:1px solid rgba(11,27,51,0.12); border-radius:4px; padding:26px 22px;
+    background:var(--white); transition:border-color .15s, transform .15s;
+  }
+  .comp-card:hover{border-color:var(--gold); transform:translateY(-2px);}
+  .comp-crest{
+    width:44px; height:44px; border-radius:8px; margin-bottom:16px;
+    background:linear-gradient(135deg, var(--blue), var(--navy-deep));
+  }
+  .comp-card h3{font-size:16px; color:var(--navy-deep); margin-bottom:6px;}
+  .comp-card p{font-size:13px; color:var(--grey);}
+
+  /* ===== Newsletter ===== */
+  .newsletter{
+    background:linear-gradient(120deg, var(--blue), var(--navy-deep));
+    color:var(--white); padding:56px 0;
+  }
+  .newsletter .wrap{
+    display:flex; align-items:center; justify-content:space-between; gap:40px;
+  }
+  .newsletter h2{font-size:26px; max-width:14ch;}
+  .newsletter p{color:#C7CEDC; margin-top:10px; font-size:14.5px; max-width:40ch;}
+  .nl-form{display:flex; gap:10px; min-width:360px;}
+  .nl-form input{
+    flex:1; padding:14px 16px; border:1px solid rgba(255,255,255,0.25); border-radius:2px;
+    background:rgba(255,255,255,0.08); color:var(--white); font-size:14px;
+  }
+  .nl-form input::placeholder{color:var(--grey);}
+  .nl-form button{
+    background:var(--gold); color:var(--navy-deep); font-weight:700; border:none; border-radius:2px; padding:0 22px; font-size:14px;
+  }
+  .nl-form button:hover{background:var(--gold-bright);}
+
+  /* ===== Footer ===== */
+  footer{background:var(--navy-deep); color:var(--grey); padding:56px 0 28px; font-size:13.5px;}
+  .foot-grid{
+    display:grid; grid-template-columns:1.4fr repeat(4, 1fr); gap:32px;
+    padding-bottom:40px; border-bottom:1px solid var(--line);
+  }
+  .foot-grid h4{color:var(--white); font-size:13px; letter-spacing:.05em; margin-bottom:16px; text-transform:uppercase;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:10px;}
+  .foot-grid a:hover{color:var(--gold-bright);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:12.5px;
+  }
+  .foot-socials{display:flex; gap:14px;}
+  .foot-socials a{
+    width:32px; height:32px; border-radius:50%; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--grey);
+  }
+  .foot-socials a:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .primary-nav{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-stats .wrap{flex-wrap:wrap;}
+    .stat{flex:1 1 50%; border-bottom:1px solid var(--line);}
+    .news-grid{grid-template-columns:1fr 1fr; grid-template-rows:auto;}
+    .story.lead{grid-column:1 / span 2; grid-row:auto; height:320px;}
+    .story.med, .story.small{grid-column:span 1; grid-row:auto; height:220px;}
+    .story.small:nth-of-type(3){grid-column:span 1;}
+    .comp-grid{grid-template-columns:1fr 1fr;}
+    .newsletter .wrap{flex-direction:column; align-items:flex-start;}
+    .nl-form{min-width:0; width:100%;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px;}
+    .topbar-links{display:none;}
+    .comp-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .rank-table{font-size:13px;}
+  }
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold-bright); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-links">
+      <a href="#">Inside the Game</a>
+      <a href="#">Tickets</a>
+      <a href="#">Media</a>
+      <a href="#">About</a>
+    </div>
+    <div class="topbar-lang">
+      <span class="active">EN</span>
+      <span>ES</span>
+      <span>FR</span>
+      <span>AR</span>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-text">WORLD FOOTBALL<small>GOVERNING BODY</small></span>
+    </a>
+    <div class="primary-nav">
+      <a href="#news">News</a>
+      <a href="#tournaments">Tournaments</a>
+      <a href="#rankings">Rankings</a>
+      <a href="#tickets">Tickets</a>
+      <a href="#watch">Watch</a>
+    </div>
+    <div class="nav-actions">
+      <button class="search-btn" aria-label="Search">&#128269;</button>
+      <button class="cta-btn">Buy Tickets</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span> LIVE — MATCHDAY UPDATES</div>
+      <h1 class="display">The world's game, on one page.</h1>
+      <p class="sub">Scores, standings and stories from every confederation — tournament schedules, official rankings, and the latest from the world of football.</p>
+      <div class="hero-actions">
+        <a href="#tournaments" class="btn-primary">Explore Tournaments</a>
+        <a href="#watch" class="btn-ghost">Watch Highlights</a>
+      </div>
+    </div>
+
+    <div class="match-card">
+      <span class="tag">Next Kickoff</span>
+      <div class="match-teams">
+        <div class="team">
+          <div class="team-crest crest-a">AR</div>
+          <div class="team-name">Argentina</div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="team">
+          <div class="team-crest crest-b">BR</div>
+          <div class="team-name">Brazil</div>
+        </div>
+      </div>
+      <div class="countdown">
+        <div><span class="n">04</span><span class="l">Days</span></div>
+        <div><span class="n">12</span><span class="l">Hrs</span></div>
+        <div><span class="n">36</span><span class="l">Min</span></div>
+        <div><span class="n">50</span><span class="l">Sec</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="wrap">
+      <div class="stat"><div class="n">211</div><div class="l">Member Associations</div></div>
+      <div class="stat"><div class="n">48</div><div class="l">Teams, Next World Cup</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Confederations</div></div>
+      <div class="stat"><div class="n">1930</div><div class="l">First Tournament Held</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="news">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Latest Stories</h2>
+      <a href="#" class="see-all">View all news →</a>
+    </div>
+    <div class="news-grid">
+      <a href="#" class="story lead">
+        <div class="art"></div>
+        <div class="story-body">
+          <div class="cat">Tournament</div>
+          <h3>Qualifiers enter the final round as five confederations chase the last places</h3>
+          <div class="meta">6 hours ago · 4 min read</div>
+        </div>
+      </a>
+      <a href="#" class="story med">
+        <div class="art"></div>
+        <div class="story-body">
+          <div class="cat">Women's Football</div>
+          <h3>Record attendance across the continental championship</h3>
+          <div class="meta">Yesterday</div>
+        </div>
+      </a>
+      <a href="#" class="story small">
+        <div class="art"></div>
+        <div class="story-body">
+          <div class="cat">Development</div>
+          <h3>Grassroots funding expands to 40 new member associations</h3>
+          <div class="meta">2 days ago</div>
+        </div>
+      </a>
+      <a href="#" class="story small">
+        <div class="art"></div>
+        <div class="story-body">
+          <div class="cat">Awards</div>
+          <h3>Shortlist announced for this year's top individual honours</h3>
+          <div class="meta">3 days ago</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="rankings" id="rankings">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>World Rankings</h2>
+      <a href="#" class="see-all">Full rankings →</a>
+    </div>
+    <table class="rank-table">
+      <thead>
+        <tr><th>Rank</th><th>Team</th><th>Confederation</th><th style="text-align:right">Points</th><th style="text-align:right">Change</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="pos">1</td><td class="team-cell"><span class="mini-crest"></span>Argentina</td><td>CONMEBOL</td><td class="pts">1861.3</td><td class="move same">—</td></tr>
+        <tr><td class="pos">2</td><td class="team-cell"><span class="mini-crest"></span>France</td><td>UEFA</td><td class="pts">1847.0</td><td class="move up">▲ 1</td></tr>
+        <tr><td class="pos">3</td><td class="team-cell"><span class="mini-crest"></span>Spain</td><td>UEFA</td><td class="pts">1839.5</td><td class="move down">▼ 1</td></tr>
+        <tr><td class="pos">4</td><td class="team-cell"><span class="mini-crest"></span>England</td><td>UEFA</td><td class="pts">1812.7</td><td class="move same">—</td></tr>
+        <tr><td class="pos">5</td><td class="team-cell"><span class="mini-crest"></span>Brazil</td><td>CONMEBOL</td><td class="pts">1798.2</td><td class="move up">▲ 2</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="comps" id="tournaments">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Tournaments</h2>
+      <a href="#" class="see-all">All competitions →</a>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-crest"></div>
+        <h3>World Cup</h3>
+        <p>The premier men's national team tournament, held every four years.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-crest"></div>
+        <h3>Women's World Cup</h3>
+        <p>The top international competition in women's football.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-crest"></div>
+        <h3>U-20 World Cup</h3>
+        <p>The proving ground for the next generation of stars.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-crest"></div>
+        <h3>Club World Cup</h3>
+        <p>Champion clubs from every confederation, one global title.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="watch">
+  <div class="wrap">
+    <div>
+      <h2 class="display">Never miss a match.</h2>
+      <p>Get fixtures, results and tournament news delivered to your inbox every week.</p>
+    </div>
+    <form class="nl-form" onsubmit="return false;">
+      <input type="email" placeholder="Enter your email address" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer id="tickets">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="brand-text" style="font-size:15px;">WORLD FOOTBALL</span>
+        <p style="margin-top:14px; max-width:32ch; color:var(--grey);">The global governing body for association football, futsal and beach soccer.</p>
+      </div>
+      <div>
+        <h4>Competitions</h4>
+        <ul>
+          <li><a href="#">World Cup</a></li>
+          <li><a href="#">Women's World Cup</a></li>
+          <li><a href="#">Club World Cup</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Organisation</a></li>
+          <li><a href="#">Member Associations</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fans</h4>
+        <ul>
+          <li><a href="#">Tickets</a></li>
+          <li><a href="#">Fan ID</a></li>
+          <li><a href="#">Travel</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 World Football. Sample page for demonstration purposes only.</span>
+      <div class="foot-socials">
+        <a href="#" aria-label="Twitter/X">X</a>
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

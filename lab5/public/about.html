@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — World Football</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1B33;
+    --navy-deep:#071223;
+    --blue:#12335F;
+    --gold:#C9A227;
+    --gold-bright:#E6C34A;
+    --white:#FFFFFF;
+    --off-white:#F3F4F1;
+    --grey:#8B93A1;
+    --line:rgba(255,255,255,0.12);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Archivo', -apple-system, sans-serif;
+    background:var(--off-white);
+    color:var(--navy-deep);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Archivo Black', 'Archivo', sans-serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+
+  /* ===== Top bar ===== */
+  .topbar{background:var(--navy-deep); color:var(--grey); font-size:12.5px;}
+  .topbar .wrap{display:flex; justify-content:space-between; align-items:center; height:36px;}
+  .topbar-links{display:flex; gap:22px;}
+  .topbar-links a{color:var(--grey); transition:color .15s;}
+  .topbar-links a:hover{color:var(--gold-bright);}
+  .topbar-lang{display:flex; gap:14px; color:var(--grey);}
+  .topbar-lang span{cursor:pointer;}
+  .topbar-lang span.active{color:var(--white); font-weight:600;}
+
+  /* ===== Nav ===== */
+  nav{background:var(--navy); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:76px;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:50%;
+    background:conic-gradient(from 210deg, var(--gold) 0deg, var(--gold-bright) 120deg, var(--gold) 240deg, var(--gold-bright) 360deg);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 0 2px var(--navy-deep), 0 0 0 3px var(--gold);
+  }
+  .brand-mark::after{
+    content:""; width:16px; height:16px; background:var(--navy-deep);
+    clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  .brand-text{color:var(--white); font-family:'Archivo Black'; font-size:16px; letter-spacing:.01em;}
+  .brand-text small{display:block; font-family:'Archivo'; font-weight:500; font-size:10.5px; color:var(--gold-bright); letter-spacing:.14em; margin-top:2px;}
+
+  .primary-nav{display:flex; gap:34px;}
+  .primary-nav a{color:var(--off-white); font-size:14.5px; font-weight:600; padding:8px 0; position:relative;}
+  .primary-nav a::after{content:""; position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--gold-bright); transition:width .2s;}
+  .primary-nav a:hover::after, .primary-nav a.active::after{width:100%;}
+  .primary-nav a.active{color:var(--gold-bright);}
+
+  .nav-actions{display:flex; align-items:center; gap:18px;}
+  .search-btn{width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--off-white); display:flex; align-items:center; justify-content:center;}
+  .cta-btn{background:var(--gold); color:var(--navy-deep); font-weight:700; font-size:13.5px; padding:10px 20px; border-radius:2px; border:none; letter-spacing:.02em;}
+  .cta-btn:hover{background:var(--gold-bright);}
+
+  /* ===== Page hero ===== */
+  .page-hero{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(ellipse 900px 500px at 80% 10%, rgba(201,162,39,0.16), transparent 60%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color:var(--white); padding:72px 0 56px;
+  }
+  .page-hero .eyebrow{color:var(--gold-bright); font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:14px;}
+  .page-hero h1{font-size:clamp(34px, 4.6vw, 54px); max-width:16ch;}
+  .page-hero p{margin-top:18px; font-size:16.5px; color:#C7CEDC; max-width:56ch;}
+  .breadcrumb{font-size:12.5px; color:var(--grey); margin-bottom:20px;}
+  .breadcrumb a{color:var(--grey);}
+  .breadcrumb a:hover{color:var(--gold-bright);}
+
+  /* ===== Sections ===== */
+  .section{padding:64px 0;}
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between; margin-bottom:32px;
+    border-bottom:2px solid var(--navy-deep); padding-bottom:14px;
+  }
+  .section-head h2{font-size:26px; color:var(--navy-deep);}
+
+  .mission{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+  }
+  .mission .art-block{
+    height:340px; border-radius:6px;
+    background:
+      radial-gradient(circle at 25% 25%, rgba(201,162,39,0.3), transparent 55%),
+      linear-gradient(135deg, var(--blue), var(--navy-deep));
+    position:relative;
+  }
+  .mission .art-block::after{
+    content:"⚽"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:90px; opacity:.16;
+  }
+  .mission p{color:#3E4A5E; font-size:15.5px; margin-top:14px; max-width:52ch;}
+  .mission p:first-of-type{margin-top:0;}
+
+  /* ===== Stat strip ===== */
+  .stat-strip{background:var(--navy-deep); color:var(--white); padding:44px 0;}
+  .stat-strip .wrap{display:flex;}
+  .stat{flex:1; padding:0 32px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .n{font-family:'Archivo Black'; font-size:30px; color:var(--gold-bright);}
+  .stat .l{font-size:12.5px; color:var(--grey); margin-top:6px;}
+
+  /* ===== Values grid ===== */
+  .values-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
+  .value-card{background:var(--white); border:1px solid rgba(11,27,51,0.12); border-radius:4px; padding:28px 24px;}
+  .value-card .num{font-family:'Archivo Black'; color:var(--gold); font-size:14px; margin-bottom:14px;}
+  .value-card h3{font-size:18px; margin-bottom:10px;}
+  .value-card p{font-size:14px; color:var(--grey); line-height:1.6;}
+
+  /* ===== Timeline ===== */
+  .timeline{border-left:2px solid rgba(11,27,51,0.15); padding-left:32px; display:flex; flex-direction:column; gap:34px;}
+  .timeline-item{position:relative;}
+  .timeline-item::before{
+    content:""; position:absolute; left:-38px; top:4px; width:12px; height:12px; border-radius:50%;
+    background:var(--gold); border:3px solid var(--off-white); box-shadow:0 0 0 2px var(--navy-deep);
+  }
+  .timeline-item .year{font-family:'Archivo Black'; color:var(--blue); font-size:16px; margin-bottom:6px;}
+  .timeline-item p{color:var(--grey); font-size:14.5px; max-width:56ch;}
+
+  /* ===== Leadership ===== */
+  .team-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;}
+  .team-card{background:var(--white); border:1px solid rgba(11,27,51,0.12); border-radius:4px; overflow:hidden;}
+  .team-photo{height:180px; background:linear-gradient(135deg, var(--blue), var(--navy-deep)); position:relative;}
+  .team-photo::after{content:""; position:absolute; inset:0; background:radial-gradient(circle at 30% 20%, rgba(201,162,39,0.35), transparent 55%);}
+  .team-info{padding:18px;}
+  .team-info h3{font-size:15px;}
+  .team-info span{font-size:12.5px; color:var(--grey); display:block; margin-top:4px;}
+
+  /* ===== CTA band ===== */
+  .cta-band{
+    background:linear-gradient(120deg, var(--blue), var(--navy-deep)); color:var(--white); padding:56px 0;
+  }
+  .cta-band .wrap{display:flex; align-items:center; justify-content:space-between; gap:40px;}
+  .cta-band h2{font-size:26px; max-width:16ch;}
+  .cta-band p{color:#C7CEDC; margin-top:10px; font-size:14.5px; max-width:40ch;}
+  .cta-band .btn-primary{
+    background:var(--gold); color:var(--navy-deep); font-weight:700; font-size:14.5px;
+    padding:14px 26px; border-radius:2px; white-space:nowrap;
+  }
+  .cta-band .btn-primary:hover{background:var(--gold-bright);}
+
+  /* ===== Footer ===== */
+  footer{background:var(--navy-deep); color:var(--grey); padding:56px 0 28px; font-size:13.5px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr repeat(4, 1fr); gap:32px; padding-bottom:40px; border-bottom:1px solid var(--line);}
+  .foot-grid h4{color:var(--white); font-size:13px; letter-spacing:.05em; margin-bottom:16px; text-transform:uppercase;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:10px;}
+  .foot-grid a:hover{color:var(--gold-bright);}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:12.5px;}
+  .foot-socials{display:flex; gap:14px;}
+  .foot-socials a{width:32px; height:32px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--grey);}
+  .foot-socials a:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .primary-nav{display:none;}
+    .mission{grid-template-columns:1fr;}
+    .stat-strip .wrap{flex-wrap:wrap;}
+    .stat{flex:1 1 50%; padding:14px 20px; border-bottom:1px solid var(--line);}
+    .values-grid{grid-template-columns:1fr 1fr;}
+    .team-grid{grid-template-columns:1fr 1fr;}
+    .cta-band .wrap{flex-direction:column; align-items:flex-start;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px;}
+    .topbar-links{display:none;}
+    .values-grid{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold-bright); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-links">
+      <a href="#">Inside the Game</a>
+      <a href="enquiry.html">Tickets</a>
+      <a href="#">Media</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="topbar-lang">
+      <span class="active">EN</span>
+      <span>ES</span>
+      <span>FR</span>
+      <span>AR</span>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-text">WORLD FOOTBALL<small>GOVERNING BODY</small></span>
+    </a>
+    <div class="primary-nav">
+      <a href="index.html#news">News</a>
+      <a href="index.html#tournaments">Tournaments</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="enquiry.html">Enquiry</a>
+    </div>
+    <div class="nav-actions">
+      <button class="search-btn" aria-label="Search">&#128269;</button>
+      <a href="enquiry.html" class="cta-btn" style="display:inline-block;">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Home</a> / About Us</div>
+    <div class="eyebrow">Who We Are</div>
+    <h1 class="display">Serving the global game, one member at a time.</h1>
+    <p>We're the international body connecting 211 member associations across six confederations — organising tournaments, setting the rules of the game, and investing in football's future at every level.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap mission">
+    <div class="art-block"></div>
+    <div>
+      <h2 style="font-size:26px; margin-bottom:16px;">Our mission</h2>
+      <p>Football belongs to everyone. Our job is to protect the game's integrity, grow it in every corner of the world, and make sure the sport keeps developing — from a first kickabout to the biggest stage there is.</p>
+      <p>We govern competitions, set the laws of the game alongside our partners, and channel funding back into member associations so that talent and infrastructure can grow wherever football is played.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stat-strip">
+  <div class="wrap">
+    <div class="stat"><div class="n">211</div><div class="l">Member Associations</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">Confederations</div></div>
+    <div class="stat"><div class="n">1904</div><div class="l">Founded</div></div>
+    <div class="stat"><div class="n">$2.7B+</div><div class="l">Reinvested in Development</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2>What we stand for</h2></div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="num">01</div>
+        <h3>Integrity</h3>
+        <p>Fair play, transparent governance and a level playing field for every member, on and off the pitch.</p>
+      </div>
+      <div class="value-card">
+        <div class="num">02</div>
+        <h3>Access</h3>
+        <p>Investing in grassroots programmes so talent has a pathway, regardless of where it starts.</p>
+      </div>
+      <div class="value-card">
+        <div class="num">03</div>
+        <h3>Unity</h3>
+        <p>One set of rules, one global community — bringing 211 associations together around a shared game.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head"><h2>Our history</h2></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">1904</div>
+        <p>Founded by a handful of national associations to bring order and shared rules to the international game.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">1930</div>
+        <p>The first world championship is held, launching what would become football's biggest tournament.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">1991</div>
+        <p>The inaugural women's world championship expands the global stage to the women's game.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2026</div>
+        <p>Membership reaches 211 associations, with development funding at an all-time high.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head"><h2>Leadership</h2></div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo"></div>
+        <div class="team-info"><h3>M. Costa</h3><span>President</span></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"></div>
+        <div class="team-info"><h3>R. Al-Farsi</h3><span>Secretary General</span></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"></div>
+        <div class="team-info"><h3>L. Devereux</h3><span>Chief of Competitions</span></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"></div>
+        <div class="team-info"><h3>S. Nakamura</h3><span>Head of Development</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div>
+      <h2 class="display">Have a question for us?</h2>
+      <p>Reach our team about tickets, media accreditation, partnerships or membership.</p>
+    </div>
+    <a href="enquiry.html" class="btn-primary">Send an Enquiry</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="brand-text" style="font-size:15px;">WORLD FOOTBALL</span>
+        <p style="margin-top:14px; max-width:32ch; color:var(--grey);">The global governing body for association football, futsal and beach soccer.</p>
+      </div>
+      <div>
+        <h4>Competitions</h4>
+        <ul>
+          <li><a href="index.html#tournaments">World Cup</a></li>
+          <li><a href="index.html#tournaments">Women's World Cup</a></li>
+          <li><a href="index.html#tournaments">Club World Cup</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">Organisation</a></li>
+          <li><a href="about.html">Member Associations</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fans</h4>
+        <ul>
+          <li><a href="enquiry.html">Enquiry</a></li>
+          <li><a href="#">Fan ID</a></li>
+          <li><a href="#">Travel</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 World Football. Sample page for demonstration purposes only.</span>
+      <div class="foot-socials">
+        <a href="#" aria-label="Twitter/X">X</a>
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
