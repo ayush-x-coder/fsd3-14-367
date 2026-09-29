@@ -19,13 +19,13 @@ function Book(props){
   return(
     <div>
       <img 
-        src={b1.picurl}
-        alt={b1.name}
+        src={props.Book.picurl}
+        alt={props.Book.name}
       />
       <h1>let us React</h1>
-      <h2>Price:{b1.orice}</h2>
-      <h3>Quantity:{b1.quantity}</h3>
-      <h4>Rating:{b1.rating}</h4>
+      <h2>Price:{props.Book.orice}</h2>
+      <h3>Quantity:{props.Book.quantity}</h3>
+      <h4>Rating:{props.Book.rating}</h4>
     </div>
   )
 }
