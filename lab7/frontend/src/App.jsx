@@ -23,7 +23,7 @@ function Book(props){
         alt={props.Book.name}
       />
       <h1>let us React</h1>
-      <h2>Price:{props.Book.orice}</h2>
+      <h2>Price:{props.Book.price}</h2>
       <h3>Quantity:{props.Book.quantity}</h3>
       <h4>Rating:{props.Book.rating}</h4>
     </div>
