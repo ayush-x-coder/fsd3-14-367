@@ -20,3 +20,4 @@ OBJECT DESTRUCTURE:const qtyStyle={}
         1. external css=create class in index.css and use in component.
         2. internal css=create property as object , then apply with style attributes 
         3. inline css= use two curly brackets with style attributes , all the css property must be single word , for ex: text-align becomes textAlign(cammelled text)
+App.jsx should have minimum code.

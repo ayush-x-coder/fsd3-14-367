@@ -1,5 +1,5 @@
-const pen = (props) => {
-    const{picUrl,company,price}=props.pen;
+const Pen = (props) => {
+    const{picUrl,company,price}=props.Pen;
   return (
     <div className="book">
         <img src={picUrl} alt={company} />
@@ -8,4 +8,4 @@ const pen = (props) => {
     </div>
   );
 };
-export default pen
+export default Pen;
